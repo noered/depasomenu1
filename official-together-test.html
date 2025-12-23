@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Together.ai 官方格式测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .test-result {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            min-height: 100px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .code-block {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🚀 Together.ai 官方格式测试</h1>
+        <p>基于 <a href="https://docs.together.ai/docs/quickstart" target="_blank">Together.ai 官方文档</a> 的配置测试</p>
+        
+        <div id="status" class="status">
+            准备测试...
+        </div>
+        
+        <div class="test-section">
+            <h3>📋 配置信息</h3>
+            <div class="code-block">
+API Key: 8e6ba51a139784c62838bb156b220d1dcd69c7c6b4e6f285e1eefee0c9bef1f9
+Base URL: https://api.together.xyz/v1/chat/completions
+Model: meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🧪 测试1: 官方示例格式</h3>
+            <p>使用官方文档中的确切格式</p>
+            <button class="test-button" onclick="testOfficialFormat()">测试官方格式</button>
+            <div id="official-result" class="test-result">等待测试...</div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🔍 测试2: 详细调试信息</h3>
+            <p>显示完整的请求和响应信息</p>
+            <button class="test-button" onclick="testWithDebugInfo()">测试调试信息</button>
+            <div id="debug-result" class="test-result">等待测试...</div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🌐 测试3: 网络连接诊断</h3>
+            <p>检查网络连接和CORS问题</p>
+            <button class="test-button" onclick="testNetworkDiagnosis()">网络诊断</button>
+            <div id="network-result" class="test-result">等待测试...</div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🔄 测试4: 替代模型</h3>
+            <p>测试其他可用的Together.ai模型</p>
+            <button class="test-button" onclick="testAlternativeModels()">测试替代模型</button>
+            <div id="alt-models-result" class="test-result">等待测试...</div>
+        </div>
+    </div>
+
+    <script>
+        const API_KEY = '8e6ba51a139784c62838bb156b220d1dcd69c7c6b4e6f285e1eefee0c9bef1f9';
+        const BASE_URL = 'https://api.together.xyz/v1/chat/completions';
+        
+        function updateStatus(type, message) {
+            const status = document.getElementById('status');
+            status.className = `status ${type}`;
+            status.textContent = message;
+        }
+        
+        async function testOfficialFormat() {
+            const result = document.getElementById('official-result');
+            result.textContent = '正在使用官方格式测试...';
+            
+            try {
+                // 完全按照官方文档的格式
+                const response = await fetch(BASE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        model: 'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
+                        messages: [
+                            {
+                                role: 'user',
+                                content: 'What are the top 3 things to do in New York?'
+                            }
+                        ],
+                        max_tokens: 100
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    result.textContent = `✅ 官方格式测试成功！
+状态码: ${response.status}
+AI回复: ${data.choices?.[0]?.message?.content || '无回复'}
+完整响应: ${JSON.stringify(data, null, 2)}
+                    `;
+                    updateStatus('success', '官方格式测试成功！');
+                } else {
+                    const errorText = await response.text();
+                    result.textContent = `❌ 官方格式测试失败
+状态码: ${response.status}
+状态文本: ${response.statusText}
+错误详情: ${errorText}
+                    `;
+                    updateStatus('error', `官方格式测试失败: ${response.status}`);
+                }
+            } catch (error) {
+                result.textContent = `❌ 官方格式测试异常
+错误类型: ${error.name}
+错误信息: ${error.message}
+错误堆栈: ${error.stack}
+                `;
+                updateStatus('error', '官方格式测试异常');
+            }
+        }
+        
+        async function testWithDebugInfo() {
+            const result = document.getElementById('debug-result');
+            result.textContent = '正在测试调试信息...';
+            
+            try {
+                console.log('=== Together.ai API 调试信息 ===');
+                console.log('API Key:', API_KEY.substring(0, 10) + '...');
+                console.log('Base URL:', BASE_URL);
+                console.log('Model:', 'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo');
+                
+                const requestBody = {
+                    model: 'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
+                    messages: [
+                        {
+                            role: 'user',
+                            content: 'Hello, test connection'
+                        }
+                    ],
+                    max_tokens: 50
+                };
+                
+                console.log('请求体:', JSON.stringify(requestBody, null, 2));
+                
+                const response = await fetch(BASE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+                
+                console.log('响应状态:', response.status);
+                console.log('响应头:', Object.fromEntries(response.headers.entries()));
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('响应数据:', data);
+                    
+                    result.textContent = `✅ 调试信息测试成功！
+请求信息:
+- URL: ${BASE_URL}
+- 模型: meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo
+- 消息: Hello, test connection
+
+响应信息:
+- 状态码: ${response.status}
+- 状态文本: ${response.statusText}
+- AI回复: ${data.choices?.[0]?.message?.content || '无回复'}
+
+完整响应数据:
+${JSON.stringify(data, null, 2)}
+                    `;
+                    updateStatus('success', '调试信息测试成功！');
+                } else {
+                    const errorText = await response.text();
+                    console.error('API错误:', errorText);
+                    
+                    result.textContent = `❌ 调试信息测试失败
+状态码: ${response.status}
+状态文本: ${response.statusText}
+错误详情: ${errorText}
+                    `;
+                    updateStatus('error', `调试信息测试失败: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('调试测试异常:', error);
+                result.textContent = `❌ 调试信息测试异常
+错误类型: ${error.name}
+错误信息: ${error.message}
+错误堆栈: ${error.stack}
+                `;
+                updateStatus('error', '调试信息测试异常');
+            }
+        }
+        
+        async function testNetworkDiagnosis() {
+            const result = document.getElementById('network-result');
+            result.textContent = '正在诊断网络连接...';
+            
+            try {
+                // 测试基本网络连接
+                result.textContent = '正在测试基本网络连接...';
+                
+                const pingResponse = await fetch('https://api.together.xyz', {
+                    method: 'HEAD',
+                    mode: 'no-cors'
+                });
+                
+                result.textContent = `网络连接诊断结果:
+基本连接: ✅ 成功
+API端点: ${BASE_URL}
+API Key长度: ${API_KEY.length} 字符
+API Key前缀: ${API_KEY.substring(0, 10)}...
+API Key后缀: ...${API_KEY.substring(API_KEY.length - 10)}
+
+现在测试完整的API调用...
+                `;
+                
+                // 测试完整API调用
+                const apiResponse = await fetch(BASE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        model: 'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
+                        messages: [
+                            {
+                                role: 'user',
+                                content: 'Test network connection'
+                            }
+                        ],
+                        max_tokens: 10
+                    })
+                });
+                
+                if (apiResponse.ok) {
+                    const data = await apiResponse.json();
+                    result.textContent += `
+完整API调用: ✅ 成功
+状态码: ${apiResponse.status}
+AI回复: ${data.choices?.[0]?.message?.content || '无回复'}
+                    `;
+                    updateStatus('success', '网络诊断成功！');
+                } else {
+                    const errorText = await apiResponse.text();
+                    result.textContent += `
+完整API调用: ❌ 失败
+状态码: ${apiResponse.status}
+错误详情: ${errorText}
+                    `;
+                    updateStatus('error', `网络诊断失败: ${apiResponse.status}`);
+                }
+            } catch (error) {
+                result.textContent += `
+网络诊断异常: ❌ 失败
+错误类型: ${error.name}
+错误信息: ${error.message}
+可能原因: CORS问题、网络连接问题或API密钥无效
+                `;
+                updateStatus('error', '网络诊断异常');
+            }
+        }
+        
+        async function testAlternativeModels() {
+            const result = document.getElementById('alt-models-result');
+            result.textContent = '正在测试替代模型...';
+            
+            const models = [
+                'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo',
+                'meta-llama/Llama-2-7b-chat-hf',
+                'meta-llama/Llama-2-13b-chat-hf',
+                'mistralai/Mistral-7B-Instruct-v0.1',
+                'togethercomputer/RedPajama-INCITE-7B-Chat'
+            ];
+            
+            let results = '替代模型测试结果:\n\n';
+            
+            for (const model of models) {
+                try {
+                    result.textContent = `正在测试模型: ${model}...`;
+                    
+                    const response = await fetch(BASE_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${API_KEY}`,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            model: model,
+                            messages: [
+                                {
+                                    role: 'user',
+                                    content: 'Hello'
+                                }
+                            ],
+                            max_tokens: 5
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        results += `✅ ${model}: 成功\n`;
+                        results += `   回复: ${data.choices?.[0]?.message?.content || '无回复'}\n\n`;
+                    } else {
+                        const errorText = await response.text();
+                        results += `❌ ${model}: 失败 (${response.status})\n`;
+                        results += `   错误: ${errorText}\n\n`;
+                    }
+                } catch (error) {
+                    results += `❌ ${model}: 异常 - ${error.message}\n\n`;
+                }
+            }
+            
+            result.textContent = results;
+            updateStatus('success', '替代模型测试完成');
+        }
+    </script>
+</body>
+</html>

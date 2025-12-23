@@ -1,0 +1,1201 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000000;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Welcome Page Styles */
+.welcome-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    overflow: hidden;
+}
+
+/* 装饰性SVG线条样式 */
+.decorative-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.decorative-lines .line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    transition: all 0.3s ease;
+}
+
+.chat-decorative-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.chat-decorative-lines .line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    transition: all 0.3s ease;
+}
+
+.welcome-page.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.welcome-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.welcome-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+
+.welcome-content {
+    position: relative;
+    text-align: center;
+    color: white;
+    max-width: 600px;
+    padding: 2rem;
+    z-index: 3;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.welcome-logo {
+    margin-bottom: 3rem;
+}
+
+.restaurant-name {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 0;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.1em;
+    overflow: hidden;
+    position: relative;
+}
+
+.restaurant-specialty {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin: 1rem 0;
+    color: #cccccc;
+    font-style: italic;
+}
+
+.welcome-message {
+    font-size: 1.2rem;
+    color: #aaaaaa;
+    margin: 1rem 0;
+}
+
+.language-selection {
+    margin-top: 2rem;
+}
+
+.language-title {
+    font-size: 1rem;
+    color: #888888;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.language-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.lang-selection-btn {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 60px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.lang-selection-btn:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.lang-selection-btn:active {
+    transform: translateY(0);
+}
+
+.flag {
+    font-size: 1.5rem;
+}
+
+.lang-name {
+    font-size: 1.1rem;
+}
+
+/* Chat Interface */
+.chat-interface {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FFF8E1, #FFECB3, #F3E5AB, #E8F5E8);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease-in-out infinite;
+}
+
+
+
+
+
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    width: 100%;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: center;
+}
+
+/* Restaurant Header */
+.restaurant-header {
+    background: linear-gradient(135deg, #FFB74D, #FFA726, #FF9800);
+    color: #5D4037;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(255, 183, 77, 0.3);
+    width: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.restaurant-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.restaurant-logo {
+    position: relative;
+    z-index: 1;
+}
+
+.restaurant-logo h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+}
+
+.restaurant-subtitle {
+    font-size: 1rem;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.language-selector {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.lang-btn {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(93, 64, 55, 0.3);
+    color: #5D4037;
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+}
+
+.lang-btn.active {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: #5D4037;
+}
+
+/* Pig Container */
+.pig-container {
+    position: relative;
+    flex: 0 0 300px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Main Pig Character */
+.pig {
+    position: relative;
+    width: 200px;
+    height: 250px;
+    transform-origin: center bottom;
+    transition: all 0.3s ease;
+}
+
+.pig:hover {
+    transform: scale(1.05);
+}
+
+/* Pig Head */
+.pig-head {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(145deg, #ffb3ba, #ff8a95);
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    box-shadow: 
+        inset 0 10px 20px rgba(255, 182, 193, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: idleWiggle 3s ease-in-out infinite;
+}
+
+/* Pig Ears */
+.pig-ears {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 30px;
+}
+
+.ear {
+    position: absolute;
+    width: 25px;
+    height: 35px;
+    background: linear-gradient(145deg, #ffb3ba, #ff8a95);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: inset 0 2px 5px rgba(255, 182, 193, 0.4);
+}
+
+.left-ear {
+    left: 15px;
+    transform: rotate(-20deg);
+    animation: earWiggle 2s ease-in-out infinite;
+}
+
+.right-ear {
+    right: 15px;
+    transform: rotate(20deg);
+    animation: earWiggle 2s ease-in-out infinite 0.5s;
+}
+
+.ear::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 15px;
+    background: linear-gradient(145deg, #ff9a9e, #fecfef);
+    border-radius: 50%;
+}
+
+/* Pig Eyes */
+.pig-eyes {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 20px;
+}
+
+.eye {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.left-eye {
+    left: 5px;
+    animation: blink 4s infinite;
+}
+
+.right-eye {
+    right: 5px;
+    animation: blink 4s infinite 0.1s;
+}
+
+.pupil {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+    animation: pupilMove 6s ease-in-out infinite;
+}
+
+.sparkle {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+/* Pig Snout */
+.pig-snout {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35px;
+    height: 30px;
+    background: linear-gradient(145deg, #ff8a95, #ff6b7a);
+    border-radius: 50%;
+    box-shadow: inset 0 2px 5px rgba(255, 182, 193, 0.3);
+}
+
+.nostrils {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 8px;
+}
+
+.nostril {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #333;
+    border-radius: 50%;
+}
+
+.left-nostril {
+    left: 2px;
+}
+
+.right-nostril {
+    right: 2px;
+}
+
+/* Pig Cheeks */
+.pig-cheeks {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 40px;
+}
+
+.cheek {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle, #ff6b7a, #ff8a95);
+    border-radius: 50%;
+    animation: blush 3s ease-in-out infinite;
+}
+
+.left-cheek {
+    left: 5px;
+    animation-delay: 0s;
+}
+
+.right-cheek {
+    right: 5px;
+    animation-delay: 1s;
+}
+
+/* Pig Body */
+.pig-body {
+    position: relative;
+    width: 140px;
+    height: 100px;
+    background: linear-gradient(145deg, #ffb3ba, #ff8a95);
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 
+        inset 0 10px 20px rgba(255, 182, 193, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: bodySway 4s ease-in-out infinite;
+}
+
+/* Pig Scarf */
+.pig-scarf {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 15px;
+    background: linear-gradient(90deg, #e0e0e0, #f5f5f5);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pig-scarf::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: -5px;
+    width: 10px;
+    height: 5px;
+    background: #d0d0d0;
+    border-radius: 3px;
+}
+
+/* Pig Arms */
+.pig-arms {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 20px;
+}
+
+.arm {
+    position: absolute;
+    width: 15px;
+    height: 25px;
+    background: linear-gradient(145deg, #ffb3ba, #ff8a95);
+    border-radius: 8px;
+    animation: armWave 3s ease-in-out infinite;
+}
+
+.left-arm {
+    left: 5px;
+    animation-delay: 0s;
+}
+
+.right-arm {
+    right: 5px;
+    animation-delay: 1.5s;
+}
+
+/* Pig Legs */
+.pig-legs {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 30px;
+}
+
+.leg {
+    position: absolute;
+    width: 20px;
+    height: 25px;
+    background: linear-gradient(145deg, #ffb3ba, #ff8a95);
+    border-radius: 10px;
+    animation: legBounce 2s ease-in-out infinite;
+}
+
+.left-leg {
+    left: 5px;
+    animation-delay: 0s;
+}
+
+.right-leg {
+    right: 5px;
+    animation-delay: 1s;
+}
+
+/* Interaction Effects */
+.touch-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border: 3px solid #ff6b7a;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.heart-effect {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    opacity: 0;
+    pointer-events: none;
+    animation: heartFloat 2s ease-out forwards;
+}
+
+/* Chat Interface */
+.chat-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    min-height: 500px;
+    max-height: 600px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.chat-header {
+    background: linear-gradient(135deg, #FFB74D, #FFA726);
+    color: #5D4037;
+    padding: 1rem;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-title h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.chat-subtitle {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #66BB6A;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+/* Quick Actions */
+.quick-actions {
+    padding: 0.8rem;
+    background: #FFF8E1;
+    border-bottom: 1px solid #FFE0B2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+}
+
+.action-btn {
+    background: linear-gradient(135deg, #FFB74D, #FFA726);
+    color: #5D4037;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(255, 183, 77, 0.3);
+}
+
+.action-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(255, 183, 77, 0.4);
+    background: linear-gradient(135deg, #FFA726, #FF9800);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 0.8rem;
+    overflow-y: auto;
+    background: #FFF8E1;
+}
+
+.message {
+    margin-bottom: 0.8rem;
+    display: flex;
+}
+
+.bot-message {
+    justify-content: flex-start;
+}
+
+.user-message {
+    justify-content: flex-end;
+}
+
+.message-content {
+    max-width: 85%;
+}
+
+.message-bubble {
+    background: white;
+    padding: 0.8rem 1rem;
+    border-radius: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    font-size: 1rem;
+    line-height: 1.4;
+    font-family: "宋体", "SimSun", serif;
+}
+
+.bot-message .message-bubble {
+    background: linear-gradient(135deg, #FFB74D, #FFA726);
+    color: #5D4037;
+}
+
+.user-message .message-bubble {
+    background: #E8F5E8;
+    color: #2E7D32;
+}
+
+.welcome-message h3 {
+    margin-bottom: 0.5rem;
+    color: #5D4037;
+    font-family: "宋体", "SimSun", serif;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.welcome-message p {
+    font-family: "宋体", "SimSun", serif;
+    font-size: 1rem;
+}
+
+.welcome-message ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    font-family: "宋体", "SimSun", serif;
+    font-size: 1rem;
+}
+
+.welcome-message li {
+    margin-bottom: 0.25rem;
+    font-family: "宋体", "SimSun", serif;
+    font-size: 1rem;
+}
+
+.message-time {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 0.25rem;
+    text-align: right;
+}
+
+.chat-input-container {
+    padding: 0.8rem;
+    background: white;
+    border-radius: 0 0 15px 15px;
+    border-top: 1px solid #FFE0B2;
+}
+
+.input-wrapper {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    margin-bottom: 0.4rem;
+}
+
+#messageInput {
+    flex: 1;
+    padding: 0.6rem 0.8rem;
+    border: 2px solid #FFE0B2;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#messageInput:focus {
+    border-color: #FFB74D;
+}
+
+.send-button {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #FFB74D, #FFA726);
+    border: none;
+    border-radius: 50%;
+    color: #5D4037;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.send-button:hover {
+    transform: scale(1.05);
+}
+
+.send-button:active {
+    transform: scale(0.95);
+}
+
+.input-hints {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.hint {
+    background: rgba(255, 183, 77, 0.2);
+    padding: 0.2rem 0.4rem;
+    border-radius: 8px;
+}
+
+/* Animations */
+@keyframes idleWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    75% { transform: rotate(-1deg); }
+}
+
+@keyframes earWiggle {
+    0%, 100% { transform: rotate(-20deg); }
+    50% { transform: rotate(-15deg); }
+}
+
+@keyframes blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+}
+
+@keyframes pupilMove {
+    0%, 100% { transform: translate(-50%, -50%); }
+    25% { transform: translate(-40%, -50%); }
+    75% { transform: translate(-60%, -50%); }
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+@keyframes blush {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes bodySway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(2px); }
+}
+
+@keyframes armWave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+}
+
+@keyframes legBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes heartFloat {
+    0% { 
+        opacity: 1; 
+        transform: translateX(-50%) translateY(0) scale(0.5); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: translateX(-50%) translateY(-20px) scale(1); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: translateX(-50%) translateY(-40px) scale(1.2); 
+    }
+}
+
+@keyframes touchRipple {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes excitedBounce {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-10px); }
+    50% { transform: translateY(-5px); }
+    75% { transform: translateY(-8px); }
+}
+
+@keyframes happyWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(3deg); }
+    75% { transform: rotate(-3deg); }
+}
+
+/* Welcome Options Buttons */
+.welcome-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.option-btn {
+    background: linear-gradient(135deg, #FFB74D, #FFA726);
+    color: #5D4037;
+    border: none;
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: normal;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-height: 45px;
+    box-shadow: 0 2px 6px rgba(255, 183, 77, 0.3);
+    font-family: "宋体", "SimSun", serif;
+}
+
+.option-btn:hover {
+    background: linear-gradient(135deg, #FFA726, #FF9800);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(255, 183, 77, 0.4);
+}
+
+.option-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(255, 183, 77, 0.3);
+}
+
+.option-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 183, 77, 0.3);
+}
+
+/* Responsive options */
+@media (max-width: 768px) {
+    .welcome-options {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .option-btn {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem;
+        min-height: 45px;
+    }
+}
+
+/* Typing Indicator */
+.typing-bubble {
+    background: linear-gradient(135deg, #FFB74D, #FFA726);
+    color: #5D4037;
+    padding: 0.6rem 0.8rem;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.typing-dots span {
+    width: 5px;
+    height: 5px;
+    background: #5D4037;
+    border-radius: 50%;
+    animation: typingDot 1.4s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typingDot {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+    30% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .welcome-content {
+        padding: 1rem;
+        max-width: 95%;
+    }
+    
+    .restaurant-name {
+        font-size: 2.5rem;
+    }
+    
+    .restaurant-specialty {
+        font-size: 1.2rem;
+    }
+    
+    .welcome-message {
+        font-size: 0.9rem;
+    }
+    
+    .language-title {
+        font-size: 0.8rem;
+    }
+    
+    .lang-selection-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+        min-height: 45px;
+    }
+    
+    .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.8rem;
+    }
+    
+    .chat-container {
+        height: 75vh;
+        min-height: 450px;
+        max-height: 500px;
+        max-width: 100%;
+        border-radius: 12px;
+    }
+    
+    .chat-header {
+        padding: 0.8rem;
+    }
+    
+    .chat-title h2 {
+        font-size: 1.1rem;
+    }
+    
+    .chat-subtitle {
+        font-size: 0.75rem;
+    }
+    
+    .quick-actions {
+        padding: 0.6rem;
+        gap: 0.3rem;
+    }
+    
+    .action-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+    
+    .chat-messages {
+        padding: 0.6rem;
+    }
+    
+    .message-bubble {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .chat-input-container {
+        padding: 0.6rem;
+    }
+    
+    .input-wrapper {
+        gap: 0.3rem;
+    }
+    
+    #messageInput {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.85rem;
+    }
+    
+    .send-button {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .restaurant-name {
+        font-size: 2rem;
+    }
+    
+    .restaurant-specialty {
+        font-size: 1rem;
+    }
+    
+    .language-buttons {
+        max-width: 280px;
+    }
+    
+    .lang-selection-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+        min-height: 40px;
+    }
+    
+    .chat-container {
+        height: 80vh;
+        min-height: 400px;
+        max-height: 450px;
+    }
+    
+    .chat-title h2 {
+        font-size: 1rem;
+    }
+    
+    .chat-subtitle {
+        font-size: 0.7rem;
+    }
+    
+    .action-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+    }
+    
+    .message-bubble {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.8rem;
+    }
+    
+    #messageInput {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .send-button {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* DEPASO Animation Styles */
+.restaurant-name span,
+.restaurant-logo h1 span {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
