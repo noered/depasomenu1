@@ -41,36 +41,6 @@
             position: relative;
         }
 
-        /* Back to Chat Button */
-        .back-to-chat {
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: linear-gradient(135deg, #FFB74D, #FFA726);
-            color: #5D4037;
-            border: none;
-            padding: 6px 20px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 183, 77, 0.3);
-            font-family: "宋体", "SimSun", serif;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .back-to-chat:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 183, 77, 0.4);
-            background: linear-gradient(135deg, #FFA726, #FF9800);
-        }
-
-        .back-to-chat:active {
-            transform: translateY(0);
-        }
 
         .menu-title {
             font-size: 4rem;
@@ -374,8 +344,7 @@
                 gap: 10px;
             }
             
-            .back-button,
-            .back-to-chat {
+            .back-button {
                 padding: 4px 7px;
                 font-size: 0.6rem;
                 top: 10px;
@@ -406,8 +375,7 @@
                 padding: 15px;
             }
             
-            .back-button,
-            .back-to-chat {
+            .back-button {
                 padding: 3px 6px;
                 font-size: 0.55rem;
                 top: 8px;
@@ -430,10 +398,6 @@
         
         <!-- Header -->
         <div class="menu-header">
-            <button class="back-to-chat" onclick="window.location.href='index.html'">
-                <span>←</span>
-                <span>返回聊天</span>
-            </button>
             <h1 class="menu-title">MENU</h1>
             <h2 class="menu-title-chinese">菜单</h2>
             <div class="title-line"></div>
