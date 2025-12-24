@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - Depaso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #f7931e;
+            --accent-color: #ffd23f;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --gradient-primary: linear-gradient(135deg, #ff6b35, #f7931e);
+            --gradient-secondary: linear-gradient(135deg, #ffd23f, #ff6b35);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: var(--bg-light);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .gradient-strip {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                #ff6b35 0%, 
+                #f7931e 25%, 
+                #ffd23f 50%, 
+                #f7931e 75%, 
+                #ff6b35 100%);
+            background-size: 200% 100%;
+            animation: gradientFlow 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Header */
+        .page-header {
+            background: var(--gradient-primary);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .content-section:nth-child(1) { animation-delay: 0.1s; }
+        .content-section:nth-child(2) { animation-delay: 0.2s; }
+        .content-section:nth-child(3) { animation-delay: 0.3s; }
+        .content-section:nth-child(4) { animation-delay: 0.4s; }
+        .content-section:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-divider {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin: 0 0.5rem;
+        }
+
+        .section-content {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            line-height: 2;
+            color: var(--text-dark);
+            text-align: justify;
+            font-family: "新宋体", "NSimSun", "SimSun", serif;
+        }
+
+        .section-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Ingredients List */
+        .ingredients-list {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .ingredients-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .ingredients-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .ingredient-label {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+
+        .ingredient-desc {
+            color: var(--text-dark);
+            font-family: "新宋体", "NSimSun", "SimSun", serif;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.1));
+            border-left: 4px solid var(--primary-color);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            line-height: 2;
+            color: var(--text-dark);
+            font-family: "新宋体", "NSimSun", "SimSun", serif;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 999;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .content-container {
+                padding: 3rem 1.5rem;
+            }
+
+            .content-section {
+                margin-bottom: 3rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .ingredients-list li {
+                padding: 0.8rem;
+            }
+
+            .highlight-box {
+                padding: 1.5rem;
+            }
+
+            .back-button {
+                bottom: 1rem;
+                left: 1rem;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 5rem 1rem 2rem;
+            }
+
+            .content-container {
+                padding: 2rem 1rem;
+            }
+
+            .content-section {
+                margin-bottom: 2.5rem;
+            }
+
+            .section-content {
+                text-align: left;
+            }
+
+            .back-button {
+                bottom: 0.5rem;
+                left: 0.5rem;
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="gradient-strip"></div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="page-header-content">
+            <h1 class="page-title">关于我们</h1>
+            <p class="page-subtitle">About Us</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content-container">
+        <!-- 序言 · 烹饪的真谛 -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>序言</span>
+                    <span class="section-divider">·</span>
+                    <span>烹饪的真谛</span>
+                </h2>
+            </div>
+            <div class="section-content">
+                <p>烹饪的诀窍，无外乎 "良材"与"用心"。 好的食物，理应是疲惫时的治愈，是身体的滋养，更是心情的雀跃。 我们不愿炫耀技艺，更不愿以过度的装饰本末倒置。 我们的初心，是把一份充满真诚心意的菜肴，新鲜的端到您面前。</p>
+            </div>
+        </section>
+
+        <!-- 选材 · 跨越山海的诚意 -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>选材</span>
+                    <span class="section-divider">·</span>
+                    <span>跨越山海的诚意</span>
+                </h2>
+            </div>
+            <div class="section-content">
+                <p>为了这一口纯粹，我们对食材始终坚持：</p>
+                <ul class="ingredients-list">
+                    <li>
+                        <span class="ingredient-label">油：</span>
+                        <span class="ingredient-desc">选用西班牙华尔多之家特级初榨橄榄油。</span>
+                    </li>
+                    <li>
+                        <span class="ingredient-label">调：</span>
+                        <span class="ingredient-desc">唯有西班牙Forvm葡萄醋的酸醇，酿酒般的醇厚。</span>
+                    </li>
+                    <li>
+                        <span class="ingredient-label">麦：</span>
+                        <span class="ingredient-desc">漂洋过海而来的福尔加罗拉斯（La Coca de Folgueroles）可口面包。</span>
+                    </li>
+                    <li>
+                        <span class="ingredient-label">蔬：</span>
+                        <span class="ingredient-desc">每日山姆配送选取的鲜萃时蔬。</span>
+                    </li>
+                    <li>
+                        <span class="ingredient-label">肉：</span>
+                        <span class="ingredient-desc">严选澳洲与西班牙伊比利亚进口顶级肉源。</span>
+                    </li>
+                    <li>
+                        <span class="ingredient-label">礼：</span>
+                        <span class="ingredient-desc">每一片西班牙火腿，都坚持为您当场鲜切，锁住油脂的芬芳。</span>
+                    </li>
+                </ul>
+                <p class="section-content" style="margin-top: 2rem;">我们的偏执，是因为我们深知：您的席间或坐着长辈，手边怀里或揽着孩子。让家人在享受美味的同时吃得健康，是我们最朴实的心愿。</p>
+            </div>
+        </section>
+
+        <!-- 执着 · 守住这一方灶台 -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>执着</span>
+                    <span class="section-divider">·</span>
+                    <span>守住这一方灶台</span>
+                </h2>
+            </div>
+            <div class="section-content">
+                <p>我们不上外卖，亦不做付费宣传。 因为我们想把省下的每一分成本，都笃定地花在食材的品质上。 论摆盘精致，我们自知不及 Fine Dining；论品类繁多，我们比不过商场大店。 我们不为追逐虚名的榜单，只想把端出来的每一道菜，做到让您点头。</p>
+            </div>
+        </section>
+
+        <!-- 等候 · 时间与爱的发酵 -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>等候</span>
+                    <span class="section-divider">·</span>
+                    <span>时间与爱的发酵</span>
+                </h2>
+            </div>
+            <div class="section-content">
+                <p>这里没有预制菜，所以上菜节奏会慢一些。 建议预订，并非因为一位难求，而是不忍让您空腹久等（多了主厨也不接，不倒就行，闲云野鹤）。要知道，哪怕是一块牛排，也不是简单的烈火炙烤。 从醒肉的静候，到逐层烹调出的味蕾层次，里面藏着时间的艺术与手心的温度。 它绝非工厂流水线上加热即食的工业品，而是值得被温柔以待的艺术品。</p>
+            </div>
+        </section>
+
+        <!-- 对得起您的每一分注视 -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>对得起您的每一分注视</span>
+                </h2>
+            </div>
+            <div class="highlight-box">
+                <p>若您能从这一餐中感受到那份妥帖与赤诚， 便足以证明：这顿饭，对得起您的期待，也对得起它的价格。</p>
+                <p style="margin-top: 1.5rem; text-align: center; font-weight: 500;">愿您在这里，吃得欢喜。</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-button">返回首页</a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Depaso. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll to top on page load
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+        });
+    </script>
+</body>
+</html>
